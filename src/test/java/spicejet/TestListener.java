@@ -9,10 +9,11 @@ import java.io.IOException;
 
 public class TestListener implements ITestListener {
 
-   base b =new base();
+    base screan = new base();
+
     @Override
-    public void onTestStart(ITestResult result) {
-        System.out.println("start test " + result.getTestClass());
+    public void onTestStart(ITestResult iTestResult) {
+
     }
 
     @Override
@@ -21,15 +22,15 @@ public class TestListener implements ITestListener {
     }
 
     @Override
-    public void onTestFailure(ITestResult result) {
+    public void onTestFailure(ITestResult result ) {
+
         try {
-            b.getScreanshot(result.getName());
+            screan.getScreanshot(result.getName());
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
-
     }
 
     @Override

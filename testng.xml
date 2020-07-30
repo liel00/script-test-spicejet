@@ -1,44 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/Liel PC/IdeaProjects/spicejet2/src/test/java/spicejet">
 
-    <test verbose="2" preserve-order="true" name="C:/Users/Liel PC/IdeaProjects/spicejet/src/test">
+
         <classes>
             <class name="spicejet.HomePageOneWay">
                 <methods>
-                    <include name="basePage"/>
+                    <include name="HomePageOneWay"/>
                 </methods>
             </class>
-        </classes>
-    </test>
-    <test name="Round">
-        <classes>
             <class name="spicejet.HomePageRound">
                 <methods>
-                    <include name="basePage"/>
+                    <include name="HomePageRound"/>
                 </methods>
             </class>
-        </classes>
-    </test>
-    <test name="uppassengers">
-        <classes>
-            <class name="spicejet.HomePageUpPassengers">
-                <methods>
-                    <include name="basePage"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test name="sme">
-        <classes>
             <class name="spicejet.SmePage">
                 <methods>
-                    <include name="basepage"/>
+                    <include name="SemPage"/>
                 </methods>
             </class>
         </classes>
     </test>
+
     <listeners>
         <listener class-name="spicejet.TestListener"/>
     </listeners>
+
 </suite>

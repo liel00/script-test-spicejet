@@ -1,104 +1,145 @@
 package pageObjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+
 
 import java.util.List;
 
 public class HomeObjects {
-    public WebDriver driver;
 
-    public HomeObjects(WebDriver driver) {
+    public WebDriver driver ;
+
+    public HomeObjects (WebDriver driver){
         this.driver = driver;
+        PageFactory.initElements(driver,this);
     }
 
-    private By frome = By.id("ControlGroupSearchView_AvailabilitySearchInputSearchVieworiginStation1");
+    @FindBy(id="ControlGroupSearchView_AvailabilitySearchInputSearchVieworiginStation1_CTXT")
+    WebElement frome ;
 
-    private By to = By.id("ControlGroupSearchView_AvailabilitySearchInputSearchViewdestinationStation1");
+    @FindBy (id="ControlGroupSearchView_AvailabilitySearchInputSearchViewdestinationStation1_CTXT")
+    WebElement to;
 
-    private By checkboxfamil = By.id("ControlGroupSearchView_AvailabilitySearchInputSearchView_FamilyAndFriends");
-    private By depatrdate = By.xpath("//div[@id='marketDate_1']//input[1]");
-    private By month = By.className("ui-datepicker-title");
-    private By right = By.xpath("//span[@class='ui-icon ui-icon-circle-triangle-e']");
-    private By day = By.className("ui-state-default");
-    private By date2 = By.xpath("//div[@id='marketDate_2']//input[1]");
-    private By day2 = By.className("ui-state-default");
-    private By rdioroundtrip = By.id("ControlGroupSearchView_AvailabilitySearchInputSearchView_RoundTrip");
-    private By passengers = By.id("divpaxinfo");
-    private By adult = By.id("ControlGroupSearchView_AvailabilitySearchInputSearchView_DropDownListPassengerType_ADT");
-    private By child = By.id("ControlGroupSearchView_AvailabilitySearchInputSearchView_DropDownListPassengerType_CHD");
-    private By infant = By.id("ControlGroupSearchView_AvailabilitySearchInputSearchView_DropDownListPassengerType_INFANT");
-    private By currency = By.id("ControlGroupSearchView_AvailabilitySearchInputSearchView_DropDownListCurrency");
-    private By search = By.id("ControlGroupSearchView_AvailabilitySearchInputSearchView_ButtonSubmit");
-    private By searchname = By.xpath("//span[@class='search-text']");
+    @FindBy(id="ControlGroupSearchView_AvailabilitySearchInputSearchView_FamilyAndFriends")
+    WebElement checkboxfamil;
 
+    @FindBy(xpath = "//div[@id='marketDate_1']//input[1]")
+    WebElement depatrdate;
 
-    public WebElement getdepatrdate() {
-        return driver.findElement(depatrdate);
+    @FindBy(xpath="//span[@class='ui-icon ui-icon-circle-triangle-e']")
+    WebElement right;
+
+    @FindBy(className = "ui-datepicker-title")
+    WebElement monty;
+
+    @FindBy(className = "ui-state-default")
+    List<WebElement> day ;
+
+    @FindBy(id="divpaxinfo")
+    WebElement passengers ;
+
+    @FindBy(id="ControlGroupSearchView_AvailabilitySearchInputSearchView_DropDownListPassengerType_ADT")
+    WebElement adult ;
+
+    @FindBy(id="ControlGroupSearchView_AvailabilitySearchInputSearchView_DropDownListPassengerType_CHD")
+    WebElement child;
+
+    @FindBy(id="ControlGroupSearchView_AvailabilitySearchInputSearchView_DropDownListPassengerType_INFANT")
+        WebElement infant;
+
+    @FindBy(id="ControlGroupSearchView_AvailabilitySearchInputSearchView_DropDownListCurrency")
+    WebElement currency;
+
+    @FindBy(id ="ControlGroupSearchView_AvailabilitySearchInputSearchView_ButtonSubmit" )
+    WebElement search;
+
+    @FindBy(id="ControlGroupSearchView_AvailabilitySearchInputSearchView_RoundTrip")
+    WebElement rdioroundtrip;
+
+    @FindBy(xpath = "//div[@id='marketDate_2']//input[1]")
+    WebElement date2;
+
+    @FindBy(className = "ui-state-default")
+    List <WebElement> day2;
+
+    public void setRdioroundtrip(){
+        rdioroundtrip.click();
     }
 
-    public WebElement getmonth() {
-        return driver.findElement(month);
+    public void setFrome ( String Country){
+        frome.click();
+        frome.sendKeys(Country);
     }
 
-    public WebElement getright() {
-        return driver.findElement(right);
+    public void setTo ( String Country){
+        to.sendKeys(Country);
     }
 
-    public List<WebElement> getday() {
-        return driver.findElements(day);
+    public void setCheckboxfamil (){
+        checkboxfamil.click();
+        Assert.assertTrue(checkboxfamil.isSelected());
     }
 
-    public WebElement getrdioroundtrip() {
-        return driver.findElement(rdioroundtrip);
+    public void setDepatrdate(){
+        depatrdate.click();
+        while (!monty.getText().contains("November")){
+           right.click();
+        }
     }
 
-    public WebElement getpassengers() {
-        return driver.findElement(passengers);
+    public void setDay(){
+        int count = day.size();
+        for(int i= 0;i<count;i++){
+            String text = day.get(i).getText();
+            if (text.equalsIgnoreCase(("7"))){
+                day.get(i).click();
+                break;
+            }
+        }
+
     }
 
-    public WebElement getadult() {
-        return driver.findElement(adult);
+    public void setDate2() {
+        date2.click();
+        int count2 = day2.size();
+        for (int i = 0; i < count2; i++) {
+            String text = day2.get(i).getText();
+            if (text.equalsIgnoreCase("30")) {
+                day2.get(i).click();
+                break;
+            }
+        }
+    }
+    public void setPassengers(){
+        passengers.click();
+    }
+    public void setAdult(){
+        Select ADULT= new Select (adult);
+        ADULT.selectByIndex(3);
     }
 
-    public WebElement getchild() {
-        return driver.findElement(child);
+    public void setChild(){
+        Select CHILD = new Select (child);
+        CHILD.selectByIndex(1);
     }
 
-    public WebElement getinfant() {
-        return driver.findElement(infant);
+    public void setInfant(){
+        Select INFANT =new Select (infant);
+        INFANT.selectByIndex(2);
     }
 
-    public WebElement getcurrency() {
-        return driver.findElement(currency);
+    public void setCurrency(){
+        Select CURRENCY = new Select(currency);
+        CURRENCY.selectByValue("USD");
     }
 
-    public WebElement getcheckboxfamil() {
-        return driver.findElement(checkboxfamil);
-    }
-
-    public WebElement getsearch() {
-        return driver.findElement(search);
-    }
-
-    public WebElement getdate2() {
-        return driver.findElement(date2);
-    }
-
-    public List<WebElement> getday2() {
-        return driver.findElements(day2);
-    }
-
-    public WebElement getsearchname() {
-        return driver.findElement(searchname);
-    }
-
-    public WebElement getfrome() {
-        return driver.findElement(frome);
-    }
-
-    public WebElement getto() {
-        return driver.findElement(to);
+    public void setSearch(){
+        search.click();
     }
 }
