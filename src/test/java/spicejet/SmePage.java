@@ -1,16 +1,14 @@
 package spicejet;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pageObjects.SmeObjectes;
-import resources.base;
+import resources.Base;
 
 import java.util.Iterator;
 import java.util.Set;
 
-public class SmePage extends base {
+public class SmePage extends Base {
 
 
 
@@ -18,24 +16,16 @@ public class SmePage extends base {
     public void SemPage (String us ,String ps) throws InterruptedException {
         driver.get(url);
         SmeObjectes s = new SmeObjectes(driver);
-        Thread.sleep(2000);
         s.setLogin();
-        Thread.sleep(2000);
         s.setSme();
-        Thread.sleep(2000);
-
         Set<String> ids =driver.getWindowHandles();
         Iterator<String> it = ids.iterator();
         String parentid =it.next();
         String childid = it.next();
         driver.switchTo().window(childid);
-
-        Thread.sleep(5000);
         s.setUsername(us);
-
         s.setPassword(ps);
         s.setSingin();
-        Thread.sleep(5000);
         s.setErrormessage();
 
 

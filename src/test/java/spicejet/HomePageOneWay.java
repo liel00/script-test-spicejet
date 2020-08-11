@@ -2,16 +2,14 @@ package spicejet;
 
 import org.testng.annotations.Test;
 import pageObjects.HomeObjects;
-import resources.base;
+import resources.Base;
 
-public class HomePageOneWay extends base {
+public class HomePageOneWay extends Base {
    @Test
     public void  HomePageOneWay () throws InterruptedException {
        driver.get(url);
        HomeObjects h = new HomeObjects(driver);
-       Thread.sleep(4000);
        h.setFrome("AMD");
-       Thread.sleep(4000);
        h.setTo("MAA");
        h.setCheckboxfamil();
        h.setDepatrdate();
