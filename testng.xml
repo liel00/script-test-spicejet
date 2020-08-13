@@ -24,7 +24,7 @@
     </test>
 
     <listeners>
-        <listener class-name="spicejet.TestListener"/>
+        <listener class-name="resources.TestListener"/>
     </listeners>
 
 </suite>

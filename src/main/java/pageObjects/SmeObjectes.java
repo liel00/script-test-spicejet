@@ -59,9 +59,6 @@ public class SmeObjectes {
 
     }
 
-    public void  setErrormessage() {
-        Assert.assertEquals(errormessage.getText(), "  No Account found. Please contact Airline/SME Administrator.");
-    }
 
 }
 

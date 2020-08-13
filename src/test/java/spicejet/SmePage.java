@@ -15,18 +15,23 @@ public class SmePage extends Base {
     @Test(dataProvider = "getdata")
     public void SemPage (String us ,String ps) throws InterruptedException {
         driver.get(url);
+
         SmeObjectes s = new SmeObjectes(driver);
         s.setLogin();
+        Thread.sleep(3000);
         s.setSme();
         Set<String> ids =driver.getWindowHandles();
         Iterator<String> it = ids.iterator();
         String parentid =it.next();
         String childid = it.next();
         driver.switchTo().window(childid);
+
+        Thread.sleep(3000);
         s.setUsername(us);
         s.setPassword(ps);
         s.setSingin();
-        s.setErrormessage();
+        driver.switchTo().window(parentid);
+       // driver.switchTo().window(it.next());
 
 
 
