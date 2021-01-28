@@ -1,4 +1,4 @@
-# script-test-spicejet
+# test-spicejet
 
 Test Suiita Name |  Tset Suita Description |   Test Case ID  | Tset Case Name | Test Caase Descrlption | Expected Result |   Status 
 
